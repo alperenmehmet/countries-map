@@ -3,6 +3,15 @@ import Loading from '../components/Loading'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import millify from 'millify'
+import { FaCity } from 'react-icons/fa'
+import { GiMoneyStack } from 'react-icons/gi'
+import {
+  BsPinMapFill,
+  BsFillPeopleFill,
+  BsFillMapFill,
+  BsTranslate
+} from 'react-icons/bs'
+import { BiWorld } from 'react-icons/bi'
 
 const Detail = () => {
   const { country, loading } = useAppSelector((state) => state.country)
@@ -20,7 +29,7 @@ const Detail = () => {
     population,
     flags
   } = country
-  console.log(country)
+
   useEffect(() => {
     if (!loading && Object.keys(country).length === 0) {
       navigate('/')
@@ -31,44 +40,76 @@ const Detail = () => {
     return <Loading />
   }
   return (
-    <main>
-      <img src={flags?.svg} alt={name.common} />
-      <section>
-        <h2>{name.common}</h2>
-        <h2>
-          currency
-          {Object.values(currencies).map((curr) => {
-            return (
-              <p>
-                <span> {curr.name}</span>
-                <span> {curr.symbol}</span>
-              </p>
-            )
-          })}
-        </h2>
-        <h2>
-          {capital.map((cap) => {
-            return <p>{cap}</p>
-          })}
-        </h2>
-        <h2>{region}</h2>
-        <h2>
-          {Object.values(languages).map((lang) => {
-            return <p>{lang}</p>
-          })}
-        </h2>
-        <h2>
-          {borders.map((bor) => {
-            return <p>{bor}</p>
-          })}
-        </h2>
-        <h2>
-          {area} km <sup>2</sup>
-        </h2>
-        <h2>
-          {population} ({millify(population)})
-        </h2>
-      </section>
+    <main className=" m-auto flex flex-wrap bg-stone-300">
+      <h2 className="w-full text-center font-bold p-3 text-2xl uppercase">
+        {name?.common}
+      </h2>
+      <div className="flex flex-col md:flex-row m-auto justify-center">
+        <img
+          className="w-[500px] h-[400px] m-auto min-w[300px] max-h-[300px] p-5 bg-stone-300"
+          src={flags?.svg}
+          alt={name?.common}
+        />
+        <section className="p-3">
+          <div className="flex items-center justify-start p-2">
+            <span className="inline-block w-[2rem] text-slate-600">
+              <FaCity />
+            </span>
+            {capital?.map((cap) => {
+              return <span>{cap}</span>
+            })}
+          </div>
+          <div className="flex items-center justify-start p-2">
+            <span className="inline-block w-[2rem] text-blue-600">
+              <BiWorld />
+            </span>
+            {region}
+          </div>
+          <div className="flex items-center justify-start p-2 flex-wrap">
+            <span className="inline-block w-[2rem] text-orange-600">
+              <BsTranslate />
+            </span>
+            {languages &&
+              Object.values(languages).map((lang) => {
+                return <p className="mr-1 "> {lang} </p>
+              })}
+          </div>
+          <div className="flex items-center justify-start p-2 flex-wrap">
+            <span className="inline-block w-[2rem] text-emerald-700">
+              <GiMoneyStack />
+            </span>
+            {currencies &&
+              Object.values(currencies).map((curr) => {
+                return (
+                  <p className="mr-1">
+                    <span> {curr.name}</span>
+                    <span> ({curr.symbol})</span>
+                  </p>
+                )
+              })}
+          </div>
+          <div className="flex items-center justify-start p-2 flex-wrap">
+            <span className="inline-block w-[2rem] text-black">
+              <BsFillPeopleFill />
+            </span>
+            {population} ({millify(population)})
+          </div>
+          <div className="flex items-center justify-start p-2 flex-wrap">
+            <span className="inline-block w-[2rem] text-cyan-600">
+              <BsFillMapFill />
+            </span>
+            {borders?.map((bor) => {
+              return <span className="mr-1">{bor}</span>
+            })}
+          </div>
+          <div className="flex items-center justify-start p-2 flex-wrap">
+            <span className="inline-block w-[2rem] text-pink-600">
+              <BsPinMapFill />
+            </span>
+            {area} KM <sup>2</sup>
+          </div>
+        </section>
+      </div>
     </main>
   )
 }

@@ -15,14 +15,18 @@ const MapChart = ({ setTooltipContent, content }) => {
   const navigate = useNavigate()
 
   const handleCountriesName = (e) => {
-    setTooltipContent(e.properties.name)
-    dispatch(getCountry(content))
-    navigate('/detail')
+    if (content === 'Democratic Republic of Congo') {
+      dispatch(getCountry('DR Congo'))
+      navigate('/detail')
+    } else {
+      dispatch(getCountry(content))
+      navigate('/detail')
+    }
   }
 
   return (
-    <div data-tip="">
-      <ComposableMap>
+    <div data-tip="" className="map">
+      <ComposableMap className="map">
         <ZoomableGroup>
           <Geographies geography="/features.json">
             {({ geographies }) =>
