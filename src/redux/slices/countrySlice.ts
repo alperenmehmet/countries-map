@@ -5,7 +5,8 @@ import { IState, ICountry } from '../../interfaces/interface'
 const initialState: IState = {
   loading: false,
   error: '',
-  country: <ICountry>{}
+  country: <ICountry>{},
+  searchQuery: ''
 }
 
 export const getCountry = createAsyncThunk(

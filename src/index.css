@@ -1,14 +1,17 @@
 body {
   --tw-bg-opacity: 1;
   background-color: rgb(214 211 209 / var(--tw-bg-opacity));
+  overflow-x: hidden;
 }
 
 .map{
   position: absolute;
-  scale: 1.1;
+  scale: 1.05;
   width: 100vw;
   height: 120vh;
+  overflow-x: hidden;
 }
+
 
 svg {
   display: inline-block;

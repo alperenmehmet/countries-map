@@ -2,6 +2,7 @@ export interface IState {
   loading: boolean
   error: string
   country: ICountry
+  searchQuery: string
 }
 
 export interface Name {

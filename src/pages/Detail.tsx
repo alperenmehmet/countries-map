@@ -55,8 +55,8 @@ const Detail = () => {
             <span className="inline-block w-[2rem] text-slate-600">
               <FaCity />
             </span>
-            {capital?.map((cap) => {
-              return <span>{cap}</span>
+            {capital?.map((cap, index) => {
+              return <span key={index}>{cap}</span>
             })}
           </div>
           <div className="flex items-center justify-start p-2">
@@ -70,8 +70,13 @@ const Detail = () => {
               <BsTranslate />
             </span>
             {languages &&
-              Object.values(languages).map((lang) => {
-                return <p className="mr-1 "> {lang} </p>
+              Object.values(languages).map((lang, index) => {
+                return (
+                  <p className="mr-1 " key={index}>
+                    {' '}
+                    {lang}{' '}
+                  </p>
+                )
               })}
           </div>
           <div className="flex items-center justify-start p-2 flex-wrap">
@@ -79,9 +84,9 @@ const Detail = () => {
               <GiMoneyStack />
             </span>
             {currencies &&
-              Object.values(currencies).map((curr) => {
+              Object.values(currencies).map((curr, index) => {
                 return (
-                  <p className="mr-1">
+                  <p className="mr-1" key={index}>
                     <span> {curr.name}</span>
                     <span> ({curr.symbol})</span>
                   </p>
@@ -98,8 +103,12 @@ const Detail = () => {
             <span className="inline-block w-[2rem] text-cyan-600">
               <BsFillMapFill />
             </span>
-            {borders?.map((bor) => {
-              return <span className="mr-1">{bor}</span>
+            {borders?.map((bor, index) => {
+              return (
+                <span className="mr-1" key={index}>
+                  {bor}
+                </span>
+              )
             })}
           </div>
           <div className="flex items-center justify-start p-2 flex-wrap">
